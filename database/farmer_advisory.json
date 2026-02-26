@@ -1,0 +1,949 @@
+[{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd0b"
+  },
+  "crop": "Rice",
+  "title": "Stem Borer Risk",
+  "message": "High humidity increases stem borer infestation.",
+  "confidence": 74,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd0c"
+  },
+  "crop": "Rice",
+  "title": "Leaf Folder Monitoring",
+  "message": "Monitor leaf folding symptoms during vegetative growth.",
+  "confidence": 72,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd0d"
+  },
+  "crop": "Rice",
+  "title": "Panicle Blast Alert",
+  "message": "Wet conditions increase blast disease risk during flowering.",
+  "confidence": 81,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd0e"
+  },
+  "crop": "Rice",
+  "title": "Nutrient Deficiency Check",
+  "message": "Yellowing leaves may indicate nitrogen deficiency.",
+  "confidence": 86,
+  "isActive": false,
+  "createdAt": {
+    "$date": "2026-02-10T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd0f"
+  },
+  "crop": "Rice",
+  "title": "Heavy Rain Alert",
+  "message": "Ensure proper drainage in paddy fields.",
+  "confidence": 85,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-13T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd10"
+  },
+  "crop": "Wheat",
+  "title": "Heat Stress Warning",
+  "message": "High temperatures may reduce grain filling efficiency.",
+  "confidence": 79,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd11"
+  },
+  "crop": "Wheat",
+  "title": "Leaf Rust Detection",
+  "message": "Inspect lower leaves for early rust pustules.",
+  "confidence": 82,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-14T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd12"
+  },
+  "crop": "Wheat",
+  "title": "Aphid Infestation Risk",
+  "message": "Dry weather favors aphid population growth.",
+  "confidence": 73,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd13"
+  },
+  "crop": "Maize",
+  "title": "Fall Armyworm Surveillance",
+  "message": "Check whorl leaves for larval damage.",
+  "confidence": 76,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd14"
+  },
+  "crop": "Maize",
+  "title": "Silk Stage Protection",
+  "message": "Avoid moisture stress during silking stage.",
+  "confidence": 84,
+  "isActive": false,
+  "createdAt": {
+    "$date": "2026-02-12T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd15"
+  },
+  "crop": "Maize",
+  "title": "Leaf Blight Risk",
+  "message": "High moisture promotes fungal leaf blight.",
+  "confidence": 69,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-13T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd16"
+  },
+  "crop": "Cotton",
+  "title": "Pink Bollworm Detection",
+  "message": "Install pheromone traps immediately.",
+  "confidence": 84,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd17"
+  },
+  "crop": "Cotton",
+  "title": "Whitefly Infestation Alert",
+  "message": "Monitor underside of leaves for whiteflies.",
+  "confidence": 77,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd18"
+  },
+  "crop": "Cotton",
+  "title": "Square Shedding Advisory",
+  "message": "Moisture stress can lead to square shedding.",
+  "confidence": 71,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd19"
+  },
+  "crop": "Sugarcane",
+  "title": "Red Rot Monitoring",
+  "message": "Inspect stalks for internal red discoloration.",
+  "confidence": 72,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-14T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd1a"
+  },
+  "crop": "Sugarcane",
+  "title": "Waterlogging Prevention",
+  "message": "Ensure proper drainage to avoid root rot.",
+  "confidence": 80,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd1b"
+  },
+  "crop": "Soybean",
+  "title": "Pod Borer Alert",
+  "message": "Monitor pod borer activity during flowering.",
+  "confidence": 74,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd1c"
+  },
+  "crop": "Soybean",
+  "title": "Root Rot Risk",
+  "message": "Avoid excess irrigation to prevent fungal root rot.",
+  "confidence": 83,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd1d"
+  },
+  "crop": "Groundnut",
+  "title": "Leaf Spot Management",
+  "message": "Apply fungicide at early leaf spot detection.",
+  "confidence": 78,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-14T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd1e"
+  },
+  "crop": "Groundnut",
+  "title": "Aflatoxin Risk Warning",
+  "message": "Avoid delayed harvesting to prevent contamination.",
+  "confidence": 81,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd1f"
+  },
+  "crop": "Banana",
+  "title": "Sigatoka Disease Risk",
+  "message": "Apply recommended fungicide spray.",
+  "confidence": 75,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd20"
+  },
+  "crop": "Banana",
+  "title": "Wind Damage Preparedness",
+  "message": "Support plants during strong winds.",
+  "confidence": 80,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd21"
+  },
+  "crop": "Tomato",
+  "title": "Late Blight Monitoring",
+  "message": "Cool weather increases late blight infection risk.",
+  "confidence": 76,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd22"
+  },
+  "crop": "Tomato",
+  "title": "Fruit Borer Surveillance",
+  "message": "Inspect fruits for early borer holes.",
+  "confidence": 72,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd23"
+  },
+  "crop": "Potato",
+  "title": "Tuber Rot Prevention",
+  "message": "Ensure proper soil drainage.",
+  "confidence": 67,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd24"
+  },
+  "crop": "Potato",
+  "title": "Frost Protection Advisory",
+  "message": "Cover plants during early morning low temperatures.",
+  "confidence": 69,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-14T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd25"
+  },
+  "crop": "Onion",
+  "title": "Thrips Monitoring",
+  "message": "Inspect leaves for thrips damage.",
+  "confidence": 71,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd26"
+  },
+  "crop": "Onion",
+  "title": "Purple Blotch Risk",
+  "message": "Moist weather increases fungal blotch infection.",
+  "confidence": 75,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd27"
+  },
+  "crop": "Chilli",
+  "title": "Flower Drop Monitoring",
+  "message": "High temperature may cause flower shedding.",
+  "confidence": 66,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd28"
+  },
+  "crop": "Mango",
+  "title": "Powdery Mildew Management",
+  "message": "Apply preventive fungicide during flowering.",
+  "confidence": 81,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-14T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd29"
+  },
+  "crop": "Apple",
+  "title": "Cold Stress Advisory",
+  "message": "Protect orchards from frost damage.",
+  "confidence": 70,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd2a"
+  },
+  "crop": "Mustard",
+  "title": "Aphid Surveillance",
+  "message": "Inspect for aphid clusters on inflorescence.",
+  "confidence": 74,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd2b"
+  },
+  "crop": "Turmeric",
+  "title": "Rhizome Rot Monitoring",
+  "message": "Avoid water stagnation in fields.",
+  "confidence": 77,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd2c"
+  },
+  "crop": "Papaya",
+  "title": "Mosaic Virus Detection",
+  "message": "Remove infected plants immediately.",
+  "confidence": 72,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd2d"
+  },
+  "crop": "Sunflower",
+  "title": "Head Borer Surveillance",
+  "message": "Inspect sunflower heads for larvae.",
+  "confidence": 73,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd2e"
+  },
+  "crop": "Tea",
+  "title": "Blister Blight Monitoring",
+  "message": "Apply fungicide at early symptom stage.",
+  "confidence": 80,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd2f"
+  },
+  "crop": "Coffee",
+  "title": "Berry Borer Monitoring",
+  "message": "Inspect berries for early infestation signs.",
+  "confidence": 75,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd30"
+  },
+  "crop": "Coconut",
+  "title": "Red Palm Weevil Surveillance",
+  "message": "Inspect trunk for bore holes.",
+  "confidence": 82,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd31"
+  },
+  "crop": "Arecanut",
+  "title": "Yellow Leaf Disease Alert",
+  "message": "Monitor palms for yellowing and reduced nut size.",
+  "confidence": 78,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd32"
+  },
+  "crop": "Arecanut",
+  "title": "Root Grub Monitoring",
+  "message": "Inspect soil near roots for grub infestation.",
+  "confidence": 72,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd33"
+  },
+  "crop": "Bajra (Pearl Millet)",
+  "title": "Downy Mildew Warning",
+  "message": "Humid weather increases downy mildew infection risk.",
+  "confidence": 81,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd34"
+  },
+  "crop": "Bajra (Pearl Millet)",
+  "title": "Early Drought Advisory",
+  "message": "Provide supplemental irrigation during prolonged dry spells.",
+  "confidence": 76,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd35"
+  },
+  "crop": "Barley",
+  "title": "Powdery Mildew Detection",
+  "message": "Inspect leaves for white powdery fungal growth.",
+  "confidence": 74,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd36"
+  },
+  "crop": "Barley",
+  "title": "Irrigation Scheduling Advisory",
+  "message": "Avoid over-irrigation during heading stage.",
+  "confidence": 85,
+  "isActive": false,
+  "createdAt": {
+    "$date": "2026-02-14T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd37"
+  },
+  "crop": "Black Gram (Urad)",
+  "title": "Yellow Mosaic Virus Risk",
+  "message": "Remove infected plants to prevent virus spread.",
+  "confidence": 83,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd38"
+  },
+  "crop": "Black Gram (Urad)",
+  "title": "Pod Borer Alert",
+  "message": "Monitor pods for early larval damage.",
+  "confidence": 77,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd39"
+  },
+  "crop": "Black Pepper",
+  "title": "Quick Wilt Disease Warning",
+  "message": "Ensure proper drainage to prevent fungal wilt.",
+  "confidence": 80,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd3a"
+  },
+  "crop": "Black Pepper",
+  "title": "Pollu Beetle Monitoring",
+  "message": "Inspect berries for beetle infestation signs.",
+  "confidence": 71,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd3b"
+  },
+  "crop": "Brinjal",
+  "title": "Shoot and Fruit Borer Alert",
+  "message": "Remove affected shoots immediately.",
+  "confidence": 79,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd3c"
+  },
+  "crop": "Brinjal",
+  "title": "Spider Mite Risk",
+  "message": "Dry weather may increase mite population.",
+  "confidence": 73,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd3d"
+  },
+  "crop": "Cabbage",
+  "title": "Diamondback Moth Alert",
+  "message": "Inspect leaves for caterpillar feeding damage.",
+  "confidence": 82,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd3e"
+  },
+  "crop": "Cabbage",
+  "title": "Black Rot Disease Risk",
+  "message": "Remove infected plants to prevent spread.",
+  "confidence": 75,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd3f"
+  },
+  "crop": "Cardamom",
+  "title": "Capsule Rot Warning",
+  "message": "High rainfall increases capsule rot risk.",
+  "confidence": 77,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd40"
+  },
+  "crop": "Cardamom",
+  "title": "Thrips Infestation Monitoring",
+  "message": "Inspect young shoots for thrips damage.",
+  "confidence": 70,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd41"
+  },
+  "crop": "Cashew",
+  "title": "Tea Mosquito Bug Alert",
+  "message": "Monitor flowering shoots for bug damage.",
+  "confidence": 84,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd42"
+  },
+  "crop": "Cashew",
+  "title": "Anthracnose Disease Risk",
+  "message": "Wet weather favors fungal infection.",
+  "confidence": 76,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd43"
+  },
+  "crop": "Castor",
+  "title": "Leaf Hopper Alert",
+  "message": "Inspect underside of leaves for hopper damage.",
+  "confidence": 74,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd44"
+  },
+  "crop": "Castor",
+  "title": "Capsule Borer Monitoring",
+  "message": "Monitor developing capsules for larval holes.",
+  "confidence": 72,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd45"
+  },
+  "crop": "Cauliflower",
+  "title": "Clubroot Disease Risk",
+  "message": "Ensure proper soil drainage to reduce infection.",
+  "confidence": 78,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd46"
+  },
+  "crop": "Cauliflower",
+  "title": "Cabbage Worm Alert",
+  "message": "Inspect curds for worm feeding damage.",
+  "confidence": 80,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd47"
+  },
+  "crop": "Chickpea (Chana)",
+  "title": "Pod Borer Risk",
+  "message": "Monitor flowering stage for larval infestation.",
+  "confidence": 83,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd48"
+  },
+  "crop": "Chickpea (Chana)",
+  "title": "Ascochyta Blight Warning",
+  "message": "Cool wet weather increases blight infection.",
+  "confidence": 77,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd49"
+  },
+  "crop": "Coriander",
+  "title": "Powdery Mildew Monitoring",
+  "message": "Inspect leaves for white fungal growth.",
+  "confidence": 74,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd4a"
+  },
+  "crop": "Cumin",
+  "title": "Wilt Disease Risk",
+  "message": "Avoid water stagnation in cumin fields.",
+  "confidence": 76,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd4b"
+  },
+  "crop": "Guava",
+  "title": "Fruit Fly Surveillance",
+  "message": "Install traps to monitor fruit fly activity.",
+  "confidence": 82,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd4c"
+  },
+  "crop": "Jowar (Sorghum)",
+  "title": "Shoot Fly Risk",
+  "message": "Inspect young seedlings for dead heart symptoms.",
+  "confidence": 79,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd4d"
+  },
+  "crop": "Jute",
+  "title": "Stem Rot Alert",
+  "message": "High moisture increases stem rot risk.",
+  "confidence": 75,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd4e"
+  },
+  "crop": "Lentil (Masoor)",
+  "title": "Rust Disease Monitoring",
+  "message": "Inspect leaves for rust pustules.",
+  "confidence": 78,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd4f"
+  },
+  "crop": "Okra (Ladyfinger)",
+  "title": "Yellow Vein Mosaic Alert",
+  "message": "Remove infected plants to prevent virus spread.",
+  "confidence": 84,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-15T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd50"
+  },
+  "crop": "Ginger",
+  "title": "Soft Rot Risk",
+  "message": "Avoid over-irrigation to prevent rhizome rot.",
+  "confidence": 80,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd51"
+  },
+  "crop": "Orange",
+  "title": "Citrus Canker Warning",
+  "message": "Inspect leaves for raised corky lesions.",
+  "confidence": 77,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-17T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd52"
+  },
+  "crop": "Grapes",
+  "title": "Downy Mildew Alert",
+  "message": "Humid conditions increase mildew risk.",
+  "confidence": 83,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-16T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "698f353ab972e204c470bd53"
+  },
+  "crop": "Green Gram (Moong)",
+  "title": "Leaf Curl Virus Risk",
+  "message": "Control whitefly population to reduce virus spread.",
+  "confidence": 79,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-02-18T08:00:00.000Z"
+  }
+}]

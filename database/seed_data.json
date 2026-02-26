@@ -1,0 +1,130 @@
+[
+  {
+    "crop": "Rice",
+    "soilType": "Clay Soil",
+    "regionType": "Irrigated Region",
+    "season": "Kharif",
+    "idealPh": "5.5 - 6.5",
+    "waterRequirement": "High",
+    "minTemperature": 20,
+    "maxTemperature": 35,
+    "advisory": {
+      "en": "Maintain standing water during early growth stage and monitor brown planthopper.",
+      "hi": "प्रारंभिक विकास चरण में पानी बनाए रखें और ब्राउन प्लांटहॉपर पर निगरानी रखें।",
+      "kn": "ಪ್ರಾರಂಭಿಕ ಬೆಳವಣಿಗೆ ಹಂತದಲ್ಲಿ ನೀರು ಕಾಯ್ದುಕೊಳ್ಳಿ ಮತ್ತು ಬ್ರೌನ್ ಪ್ಲಾಂಟ್ಹಾಪರ್ ಮೇಲೆ ಗಮನವಿರಲಿ."
+    },
+    "confidence": 92
+  },
+  {
+    "crop": "Wheat",
+    "soilType": "Loamy Soil",
+    "regionType": "Rural",
+    "season": "Rabi",
+    "idealPh": "6.0 - 7.5",
+    "waterRequirement": "Medium",
+    "minTemperature": 15,
+    "maxTemperature": 30,
+    "advisory": {
+      "en": "Avoid excess irrigation during flowering and monitor rust disease.",
+      "hi": "फूल आने के दौरान अधिक सिंचाई से बचें और रतुआ रोग पर निगरानी रखें।",
+      "kn": "ಹೂವು ಬರುವ ಹಂತದಲ್ಲಿ ಹೆಚ್ಚು ನೀರಾವರಿ ತಪ್ಪಿಸಿ ಮತ್ತು ರಸ್ಟ್ ರೋಗ ಗಮನಿಸಿ."
+    },
+    "confidence": 88
+  },
+  {
+    "crop": "Maize",
+    "soilType": "Alluvial Soil",
+    "regionType": "Rural",
+    "season": "Kharif",
+    "idealPh": "5.8 - 7.0",
+    "waterRequirement": "Medium",
+    "minTemperature": 18,
+    "maxTemperature": 32,
+    "advisory": {
+      "en": "Ensure proper spacing and apply nitrogen in split doses.",
+      "hi": "उचित दूरी बनाए रखें और नाइट्रोजन को भागों में डालें।",
+      "kn": "ಸರಿಯಾದ ಅಂತರ ಕಾಯ್ದುಕೊಳ್ಳಿ ಮತ್ತು ನೈಟ್ರೋಜನ್ ಅನ್ನು ಭಾಗಗಳಲ್ಲಿ ನೀಡಿ."
+    },
+    "confidence": 85
+  },
+  {
+    "crop": "Cotton",
+    "soilType": "Black Soil",
+    "regionType": "Dry Region",
+    "season": "Kharif",
+    "idealPh": "6.0 - 8.0",
+    "waterRequirement": "Medium",
+    "minTemperature": 21,
+    "maxTemperature": 35,
+    "advisory": {
+      "en": "Monitor bollworm infestation and use drip irrigation.",
+      "hi": "बोलवर्म संक्रमण पर निगरानी रखें और ड्रिप सिंचाई करें।",
+      "kn": "ಬೋಲ್‌ವರ್ಮ್ ಕೀಟದ ಮೇಲೆ ಗಮನವಿರಲಿ ಮತ್ತು ಡ್ರಿಪ್ ನೀರಾವರಿ ಬಳಸಿ."
+    },
+    "confidence": 90
+  },
+  {
+    "crop": "Sugarcane",
+    "soilType": "Alluvial Soil",
+    "regionType": "Irrigated Region",
+    "season": "Annual",
+    "idealPh": "6.0 - 7.5",
+    "waterRequirement": "High",
+    "minTemperature": 20,
+    "maxTemperature": 38,
+    "advisory": {
+      "en": "Maintain consistent irrigation and apply organic manure.",
+      "hi": "नियमित सिंचाई करें और जैविक खाद डालें।",
+      "kn": "ನಿಯಮಿತ ನೀರಾವರಿ ಮಾಡಿ ಮತ್ತು ಸಾವಯವ ಗೊಬ್ಬರ ಬಳಸಿ."
+    },
+    "confidence": 87
+  },
+  {
+    "crop": "Tomato",
+    "soilType": "Red Soil",
+    "regionType": "Urban",
+    "season": "Kharif",
+    "idealPh": "6.0 - 6.8",
+    "waterRequirement": "Medium",
+    "minTemperature": 18,
+    "maxTemperature": 32,
+    "advisory": {
+      "en": "Ensure balanced potassium fertilizer and monitor blight.",
+      "hi": "संतुलित पोटाश उर्वरक का प्रयोग करें और झुलसा रोग पर नजर रखें।",
+      "kn": "ಸಮತೋಲನ ಪೋಟಾಶ್ ರಸಗೊಬ್ಬರ ಬಳಸಿ ಮತ್ತು ಬ್ಲೈಟ್ ರೋಗ ಗಮನಿಸಿ."
+    },
+    "confidence": 85
+  },
+  {
+    "crop": "Potato",
+    "soilType": "Loamy Soil",
+    "regionType": "Hilly Region",
+    "season": "Rabi",
+    "idealPh": "5.5 - 6.5",
+    "waterRequirement": "Medium",
+    "minTemperature": 15,
+    "maxTemperature": 25,
+    "advisory": {
+      "en": "Avoid waterlogging and monitor late blight.",
+      "hi": "जलभराव से बचें और लेट ब्लाइट पर नजर रखें।",
+      "kn": "ನೀರಿನ ನಿಲುವು ತಪ್ಪಿಸಿ ಮತ್ತು ಲೇಟ್ ಬ್ಲೈಟ್ ಗಮನಿಸಿ."
+    },
+    "confidence": 84
+  },
+  {
+    "crop": "Mango",
+    "soilType": "Laterite Soil",
+    "regionType": "Coastal Region",
+    "season": "Perennial",
+    "idealPh": "5.5 - 7.5",
+    "waterRequirement": "Low",
+    "minTemperature": 20,
+    "maxTemperature": 40,
+    "advisory": {
+      "en": "Ensure proper pruning and apply micronutrients.",
+      "hi": "उचित छंटाई करें और सूक्ष्म पोषक तत्व डालें।",
+      "kn": "ಸರಿಯಾದ ಕತ್ತರಿಸುವಿಕೆ ಮಾಡಿ ಮತ್ತು ಸೂಕ್ಷ್ಮ ಪೋಷಕಾಂಶಗಳನ್ನು ಬಳಸಿ."
+    },
+    "confidence": 83
+  }
+]
