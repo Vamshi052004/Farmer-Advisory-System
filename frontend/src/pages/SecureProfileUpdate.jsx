@@ -60,20 +60,22 @@ function SecureProfileUpdate() {
           ✏️ Update Your Profile
         </h2>
 
-        {Object.keys(formData).map((field) => (
-          <div key={field} className="mb-4">
-            <label className="block text-sm font-medium mb-1 capitalize">
-              {field.replace(/([A-Z])/g, " $1")}
-            </label>
+        {Object.entries(formData)
+          .filter(([key]) => !["_id", "role", "__v"].includes(key))
+          .map(([field, value]) => (
+            <div key={field} className="mb-4">
+              <label className="block text-sm font-medium mb-1 capitalize">
+                {field.replace(/([A-Z])/g, " $1")}
+              </label>
 
-            <input
-              type="text"
-              name={field}
-              value={formData[field] || ""}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg"
-            />
-          </div>
+              <input
+                type="text"
+                name={field}
+                value={value || ""}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-lg"
+              />
+            </div>
         ))}
 
         <button

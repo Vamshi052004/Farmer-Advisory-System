@@ -1,6 +1,6 @@
 import api from "./api";
 
 export const getMarketData = async (crop) => {
-  const response = await api.get(`/market/${crop}`);
-  return response.data;
+  const res = await api.get(`/market/${crop}`);
+  return res.data;
 };

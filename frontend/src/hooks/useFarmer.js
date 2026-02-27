@@ -1,6 +1,12 @@
-import { useContext } from 'react'
-import { FarmerContext } from '../context/FarmerContext'
+import { useContext } from "react";
+import { FarmerContext } from "../context/FarmerContext";
 
 export function useFarmer() {
-  return useContext(FarmerContext)
+  const context = useContext(FarmerContext);
+
+  if (!context) {
+    throw new Error("useFarmer must be used within FarmerProvider");
+  }
+
+  return context;
 }

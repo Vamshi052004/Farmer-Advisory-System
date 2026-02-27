@@ -8,12 +8,15 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+
+import api from "../services/api";              // ✅ FIXED
 import { getWeather } from "../services/weatherService";
 
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
+/* ================= FIX LEAFLET ICON ================= */
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -40,28 +43,33 @@ function Weather() {
   const [weatherData, setWeather] = useState(null);
   const [locationName, setLocationName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const mapRef = useRef();
+  const [loading, setLoading] = useState(false);
+
+  const mapRef = useRef(null);
 
   /* ================= FETCH WEATHER ================= */
   const fetchWeather = async (lat, lng) => {
     try {
+      setLoading(true);
       const data = await getWeather(lat, lng);
       setWeather(data);
     } catch (error) {
       console.error("Weather fetch error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   /* ================= REVERSE GEOCODE ================= */
-  const fetchLocation = async (lat, lng) => {
+const fetchLocation = async (lat, lng) => {
   try {
-    const res = await fetch(
-      `http://localhost:5000/api/weather/reverse-geocode?lat=${lat}&lon=${lng}`
+    const res = await api.get(
+      `/weather/reverse-geocode?lat=${lat}&lon=${lng}`
     );
 
-    const data = await res.json();
+    const data = res.data;
 
-    if (data.address) {
+    if (data?.address) {
 
       const city =
         data.address.city ||
@@ -80,40 +88,47 @@ function Weather() {
         data.address.water ||
         "";
 
-      // 🔥 PRIORITY: Ocean/Sea if exists
+      // ✅ PRIORITY 1: Ocean / Sea detected
       if (ocean) {
-        setLocationName(`${ocean}, ${country}`);
+        setLocationName(`🌊 ${ocean}`);
+        return;
       }
-      else if (city || state || country) {
+
+      // ✅ PRIORITY 2: Normal land location
+      if (city || state || country) {
         setLocationName(
           [city, state, country]
             .filter(Boolean)
             .join(", ")
         );
-      }
-      else {
-        setLocationName("Ocean / International Waters");
+        return;
       }
 
+      // ✅ PRIORITY 3: No address but valid response
+      setLocationName("🌊 International Waters");
+
     } else {
-      setLocationName("Ocean / International Waters");
+      setLocationName("🌊 International Waters");
     }
 
   } catch (error) {
     console.error("Reverse geocode error:", error);
-    setLocationName("Location unavailable");
+
+    // ✅ If API fails (ocean / no data)
+    setLocationName("🌊 International Waters");
   }
 };
+
   /* ================= SEARCH LOCATION ================= */
   const handleSearch = async () => {
     if (!searchQuery.trim()) return;
 
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/weather/search-location?q=${searchQuery}`
+      const res = await api.get(
+        `/weather/search-location?q=${searchQuery}`
       );
 
-      const data = await res.json();
+      const data = res.data; // ✅ FIXED
 
       if (data.length > 0) {
         const lat = parseFloat(data[0].lat);
@@ -136,7 +151,6 @@ function Weather() {
 
   return (
     <div className="p-4 md:p-8 min-h-screen bg-gradient-to-b from-green-50 to-white">
-
       <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
         🌤 Weather Intelligence
       </h2>
@@ -190,7 +204,14 @@ function Weather() {
         </MapContainer>
       </div>
 
-      {/* ================= LOCATION NAME DISPLAY ================= */}
+      {/* ================= LOADING ================= */}
+      {loading && (
+        <div className="text-green-600 font-semibold mb-4">
+          Fetching weather data...
+        </div>
+      )}
+
+      {/* ================= LOCATION DISPLAY ================= */}
       {locationName && (
         <div className="mb-6 bg-white p-4 rounded-xl shadow-md">
           <p className="text-lg font-semibold text-gray-700">
@@ -200,7 +221,7 @@ function Weather() {
       )}
 
       {/* ================= WEATHER RESULTS ================= */}
-      {weatherData && (
+      {weatherData?.forecast && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {weatherData.forecast.slice(0, 6).map((item, i) => (
             <div key={i} className="bg-white p-6 rounded-2xl shadow-md">
@@ -218,7 +239,6 @@ function Weather() {
           ))}
         </div>
       )}
-
     </div>
   );
 }

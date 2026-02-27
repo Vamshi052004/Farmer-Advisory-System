@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 function AdminRoute({ children }) {
   const token = localStorage.getItem("token");
 
-  // 🚫 No token → redirect to login
+  // No token
   if (!token) {
     return <Navigate to="/login" replace />;
   }
@@ -12,23 +12,31 @@ function AdminRoute({ children }) {
   try {
     const decoded = jwtDecode(token);
 
-    // 🚫 Token expired
-    if (decoded.exp * 1000 < Date.now()) {
+    // Expired token
+    if (!decoded?.exp || decoded.exp * 1000 < Date.now()) {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
       return <Navigate to="/login" replace />;
     }
 
-    // 🚫 Not admin
-    if (decoded.role !== "admin") {
+    // Wrong token type
+    if (decoded?.type !== "access") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      return <Navigate to="/login" replace />;
+    }
+
+    // Not admin
+    if (decoded?.role !== "admin") {
       return <Navigate to="/dashboard" replace />;
     }
 
-    // ✅ Admin allowed
     return children;
 
-  } catch (error) {
-    // 🚫 Invalid token format
+  } catch {
+    // Invalid token
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     return <Navigate to="/login" replace />;
   }
 }

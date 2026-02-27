@@ -1,12 +1,13 @@
 export function isValidMobile(number) {
-  const mobileRegex = /^[6-9]\d{9}$/
-  return mobileRegex.test(number)
+  if (!number) return false;
+  const mobileRegex = /^[6-9]\d{9}$/;
+  return mobileRegex.test(number.trim());
 }
 
 export function isNotEmpty(value) {
-  return value && value.trim().length > 0
+  return value?.trim().length > 0;
 }
 
 export function isValidPassword(password) {
-  return password.length >= 6
+  return password && password.length >= 6;
 }

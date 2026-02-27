@@ -4,63 +4,83 @@ import api from "../services/api";
 function AdminDashboard() {
   const [summary, setSummary] = useState(null);
   const [farmers, setFarmers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const dash = await api.get("/admin/dashboard");
-    const farmersList = await api.get("/admin/farmers");
+    try {
+      setLoading(true);
 
-    setSummary(dash.data.summary);
-    setFarmers(farmersList.data);
+      const [dashRes, farmersRes] = await Promise.all([
+        api.get("/admin/dashboard"),
+        api.get("/admin/farmers"),
+      ]);
+
+      setSummary(dashRes.data?.summary || {});
+      setFarmers(farmersRes.data || []);
+    } catch (error) {
+      console.error("Dashboard fetch failed:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const deleteFarmer = async (id) => {
-    await api.delete(`/admin/farmer/${id}`);
-    fetchData();
+    if (!window.confirm("Delete this farmer?")) return;
+
+    try {
+      await api.delete(`/admin/farmer/${id}`);
+      fetchData();
+    } catch (error) {
+      console.error("Delete failed:", error);
+    }
   };
 
-  return (
-    <div className="p-4 md:p-8">
+  if (loading) {
+    return <div className="p-10 text-center">Loading dashboard...</div>;
+  }
 
-      <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-8">
+  return (
+    <div className="p-6 md:p-10 space-y-10">
+      <h2 className="text-3xl font-bold text-green-700">
         👑 Admin Dashboard
       </h2>
 
       {summary && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-
-          <div className="bg-white p-6 rounded-2xl shadow-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-white p-6 rounded-xl shadow">
             <p>Total Users</p>
-            <p className="text-3xl font-bold">{summary.totalUsers}</p>
+            <p className="text-3xl font-bold">{summary.totalUsers || 0}</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-md">
+          <div className="bg-white p-6 rounded-xl shadow">
             <p>Farmers</p>
             <p className="text-3xl font-bold text-green-600">
-              {summary.totalFarmers}
+              {summary.totalFarmers || 0}
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-md">
+          <div className="bg-white p-6 rounded-xl shadow">
             <p>Active Advisories</p>
             <p className="text-3xl font-bold text-blue-600">
-              {summary.activeAdvisories}
+              {summary.activeAdvisories || 0}
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-md">
+          <div className="bg-white p-6 rounded-xl shadow">
             <p>Pending Requests</p>
             <p className="text-3xl font-bold text-yellow-600">
-              {summary.pendingProfileRequests}
+              {summary.pendingProfileRequests || 0}
             </p>
           </div>
         </div>
       )}
 
-      <div className="overflow-x-auto bg-white rounded-2xl shadow-md">
+      {/* Farmers Table */}
+      <div className="overflow-x-auto bg-white rounded-xl shadow mt-8">
         <table className="min-w-full">
           <thead className="bg-green-600 text-white">
             <tr>

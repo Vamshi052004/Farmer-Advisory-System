@@ -8,8 +8,7 @@ function MarketIntelligence() {
   const [marketData, setMarketData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const role = user?.role;
+  const role = JSON.parse(localStorage.getItem("user") || "{}")?.role;
 
   useEffect(() => {
     async function loadCrops() {

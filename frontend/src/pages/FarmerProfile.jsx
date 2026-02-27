@@ -132,11 +132,13 @@ function FarmerProfile() {
 
         {/* PROFILE DETAILS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {Object.keys(profile).map((key) => (
-            <div key={key} className="bg-gray-50 p-4 rounded-xl border">
-              <p className="font-semibold capitalize">{key}</p>
-              <p>{profile[key] || "-"}</p>
-            </div>
+          {Object.entries(profile)
+            .filter(([key]) => !["_id", "role", "__v"].includes(key))
+            .map(([key, value]) => (
+              <div key={key} className="bg-gray-50 p-4 rounded-xl border">
+                <p className="font-semibold capitalize">{key}</p>
+                <p>{value || "-"}</p>
+              </div>
           ))}
         </div>
 

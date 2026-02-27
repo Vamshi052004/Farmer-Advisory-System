@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
-function Activate() {
+function ActivateAccount() {
   const { token } = useParams();
   const navigate = useNavigate();
 
@@ -14,9 +14,8 @@ function Activate() {
 
   const handleActivate = async (e) => {
     e.preventDefault();
-
-    setMessage("");
     setError("");
+    setMessage("");
 
     if (password.length < 6) {
       return setError("Password must be at least 6 characters");
@@ -31,14 +30,14 @@ function Activate() {
 
       await api.post("/auth/activate", {
         token,
-        password
+        password,
       });
 
       setMessage("Account activated successfully ✅");
 
       setTimeout(() => {
         navigate("/login");
-      }, 2500);
+      }, 2000);
 
     } catch (err) {
       setError(
@@ -50,14 +49,19 @@ function Activate() {
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-card activate-card">
-        <h2 className="auth-title">Activate Your Account</h2>
-        <p className="auth-subtitle">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-emerald-50 to-green-200 px-4">
+
+      <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8 border border-white/40">
+
+        <h2 className="text-3xl font-bold text-center text-green-700 mb-4">
+          🌾 Activate Your Account
+        </h2>
+
+        <p className="text-center text-gray-500 mb-6">
           Set a secure password to activate your account.
         </p>
 
-        <form onSubmit={handleActivate} className="auth-form">
+        <form onSubmit={handleActivate} className="space-y-4">
 
           <input
             type="password"
@@ -65,6 +69,7 @@ function Activate() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           />
 
           <input
@@ -73,23 +78,31 @@ function Activate() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           />
 
           <button
             type="submit"
-            className="activate-btn"
             disabled={loading}
+            className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition shadow-md"
           >
             {loading ? "Activating..." : "Activate Account"}
           </button>
 
         </form>
 
-        {message && <p className="success-msg">{message}</p>}
-        {error && <p className="error-msg">{error}</p>}
+        {message && (
+          <p className="text-green-600 text-center mt-4">{message}</p>
+        )}
+
+        {error && (
+          <p className="text-red-500 text-center mt-4">{error}</p>
+        )}
+
       </div>
+
     </div>
   );
 }
 
-export default Activate;
+export default ActivateAccount;

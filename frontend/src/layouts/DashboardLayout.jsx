@@ -1,27 +1,22 @@
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import { useState } from "react";
+
 function DashboardLayout({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <>
+      <Navbar toggleSidebar={() => setIsOpen(!isOpen)} />
 
-      {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md p-6">
-        <h2 className="text-xl font-bold text-green-700 mb-8">
-          🌾 AgriSmart
-        </h2>
+      <div className="flex min-h-screen bg-gray-50">
+        <Sidebar isOpen={isOpen} />
 
-        <nav className="space-y-4 text-gray-600">
-          <a href="/dashboard" className="block hover:text-green-600">Dashboard</a>
-          <a href="/crop-advisory" className="block hover:text-green-600">Crop Advisory</a>
-          <a href="/weather" className="block hover:text-green-600">Weather</a>
-          <a href="/profile" className="block hover:text-green-600">Profile</a>
-        </nav>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 p-10">
-        {children}
-      </main>
-
-    </div>
+        <main className="flex-1 p-6 md:p-8">
+          {children}
+        </main>
+      </div>
+    </>
   );
 }
 

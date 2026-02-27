@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import "./index.css";
-import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
@@ -22,12 +20,12 @@ import AdminProfileRequests from "./pages/AdminProfileRequests";
 import SecureProfileUpdate from "./pages/SecureProfileUpdate";
 import AdminProfile from "./pages/AdminProfile";
 
-/* ================= PUBLIC LAYOUT ================= */
+//  PUBLIC LAYOUT 
 function PublicLayout({ children }) {
   return <div className="min-h-screen bg-gray-50">{children}</div>;
 }
 
-/* ================= PRIVATE LAYOUT ================= */
+//  PRIVATE LAYOUT 
 function PrivateLayout({ children }) {
   const token = localStorage.getItem("token");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -39,8 +37,6 @@ function PrivateLayout({ children }) {
       <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
       <div className="flex min-h-screen bg-gray-50 relative">
-
-        {/* Overlay for mobile */}
         {sidebarOpen && (
           <div
             className="fixed inset-0 bg-black bg-opacity-30 z-30 md:hidden"
@@ -58,7 +54,7 @@ function PrivateLayout({ children }) {
   );
 }
 
-/* ================= ROLE BASED PROFILE ================= */
+//  ROLE BASED PROFILE 
 function ProfileRouter() {
   const userData = localStorage.getItem("user");
   if (!userData) return <Navigate to="/login" replace />;
@@ -71,7 +67,7 @@ function ProfileRouter() {
   }
 }
 
-/* ================= APP ROUTES ================= */
+//  APP ROUTES 
 function App() {
   return (
     <Router>
@@ -95,17 +91,35 @@ function App() {
 
         <Route
           path="/admin"
-          element={<PrivateLayout><AdminRoute><AdminDashboard /></AdminRoute></PrivateLayout>}
+          element={
+            <PrivateLayout>
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            </PrivateLayout>
+          }
         />
 
         <Route
           path="/admin/advisories"
-          element={<PrivateLayout><AdminRoute><ManageAdvisories /></AdminRoute></PrivateLayout>}
+          element={
+            <PrivateLayout>
+              <AdminRoute>
+                <ManageAdvisories />
+              </AdminRoute>
+            </PrivateLayout>
+          }
         />
 
         <Route
           path="/admin/profile-requests"
-          element={<PrivateLayout><AdminRoute><AdminProfileRequests /></AdminRoute></PrivateLayout>}
+          element={
+            <PrivateLayout>
+              <AdminRoute>
+                <AdminProfileRequests />
+              </AdminRoute>
+            </PrivateLayout>
+          }
         />
 
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,34 +1,48 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { jwtDecode } from "jwt-decode";
 import api from "../services/api";
 
 function Sidebar({ isOpen }) {
   const location = useLocation();
   const [pendingCount, setPendingCount] = useState(0);
 
-  const userData = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
   let userRole = null;
 
-  if (userData) {
+  // Decode role safely
+  if (token) {
     try {
-      userRole = JSON.parse(userData)?.role;
-    } catch {}
+      const decoded = jwtDecode(token);
+      userRole = decoded?.role || null;
+    } catch {
+      userRole = null;
+    }
   }
 
+  const fetchPending = useCallback(async () => {
+    try {
+      const res = await api.get(
+        "/admin/profile-update-requests?status=pending&page=1&limit=1"
+      );
+      setPendingCount(res?.data?.total || 0);
+    } catch {
+      // silent fail (no logic change)
+    }
+  }, []);
+
   useEffect(() => {
+    let interval;
+
     if (userRole === "admin") {
       fetchPending();
-      const interval = setInterval(fetchPending, 15000);
-      return () => clearInterval(interval);
+      interval = setInterval(fetchPending, 15000);
     }
-  }, [userRole]);
 
-  const fetchPending = async () => {
-    try {
-      const res = await api.get("/admin/profile-update-requests?status=pending&page=1&limit=1");
-      setPendingCount(res.data.total);
-    } catch {}
-  };
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [userRole, fetchPending]);
 
   const active = (path) =>
     location.pathname === path
@@ -38,10 +52,9 @@ function Sidebar({ isOpen }) {
   return (
     <aside
       className={`fixed md:static top-0 left-0 h-full bg-white z-40 transform transition-transform duration-300
-      ${isOpen ? "translate-x-0" : "-translate-x-full"} 
+      ${isOpen ? "translate-x-0" : "-translate-x-full"}
       md:translate-x-0 w-64 border-r p-6`}
     >
-
       <div className="flex flex-col gap-3 mt-4">
 
         <Link to="/dashboard" className={`px-4 py-3 rounded-xl ${active("/dashboard")}`}>
@@ -72,7 +85,10 @@ function Sidebar({ isOpen }) {
               👑 Admin Dashboard
             </Link>
 
-            <Link to="/admin/advisories" className={`px-4 py-3 rounded-xl ${active("/admin/advisories")}`}>
+            <Link
+              to="/admin/advisories"
+              className={`px-4 py-3 rounded-xl ${active("/admin/advisories")}`}
+            >
               📋 Manage Advisories
             </Link>
 
@@ -81,6 +97,7 @@ function Sidebar({ isOpen }) {
               className={`flex justify-between items-center px-4 py-3 rounded-xl ${active("/admin/profile-requests")}`}
             >
               <span>📩 Profile Requests</span>
+
               {pendingCount > 0 && (
                 <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
                   {pendingCount}
@@ -89,6 +106,7 @@ function Sidebar({ isOpen }) {
             </Link>
           </>
         )}
+
       </div>
     </aside>
   );

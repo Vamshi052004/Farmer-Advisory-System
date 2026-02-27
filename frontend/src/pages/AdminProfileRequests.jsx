@@ -7,6 +7,7 @@ function AdminProfileRequests() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const limit = 5;
 
@@ -15,11 +16,19 @@ function AdminProfileRequests() {
   }, [status, search, page]);
 
   const fetchRequests = async () => {
-    const res = await api.get(
-      `/admin/profile-update-requests?status=${status}&search=${search}&page=${page}&limit=${limit}`
-    );
-    setRequests(res.data.data);
-    setTotal(res.data.total);
+    try {
+      setLoading(true);
+      const res = await api.get(
+        `/admin/profile-update-requests?status=${status}&search=${search}&page=${page}&limit=${limit}`
+      );
+
+      setRequests(res.data.data || []);
+      setTotal(res.data.total || 0);
+    } catch (error) {
+      console.error("Request fetch failed:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const approve = async (id) => {
@@ -32,15 +41,15 @@ function AdminProfileRequests() {
     fetchRequests();
   };
 
-  const totalPages = Math.ceil(total / limit);
+  const totalPages = Math.ceil(total / limit) || 1;
 
   return (
-    <div className="p-4 md:p-8">
-
-      <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
+    <div className="p-6 md:p-10">
+      <h2 className="text-3xl font-bold text-green-700 mb-6">
         📩 Profile Update Requests
       </h2>
 
+      {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4 mb-6">
         <select
           value={status}
@@ -63,20 +72,15 @@ function AdminProfileRequests() {
         />
       </div>
 
-      {requests.map((req) => (
-        <div key={req._id} className="bg-white p-6 rounded-xl shadow-md mb-4 border">
+      {loading && <p>Loading requests...</p>}
 
-          <div className="flex justify-between">
-            <div>
-              <p className="font-semibold">{req.userName}</p>
-              <p className="text-sm text-gray-500">
-                {new Date(req.requestedAt).toLocaleString()}
-              </p>
-            </div>
-            <span className="px-3 py-1 bg-gray-100 rounded-full text-sm">
-              {req.status}
-            </span>
-          </div>
+      {requests.map((req) => (
+        <div key={req._id} className="bg-white p-6 rounded-xl shadow mb-4">
+          <p className="font-semibold">{req.userName}</p>
+          <p className="text-sm text-gray-500">
+            {new Date(req.requestedAt).toLocaleString()}
+          </p>
+          <p className="mt-2">Status: {req.status}</p>
 
           {req.status === "pending" && (
             <div className="mt-4 flex gap-4">
@@ -97,6 +101,7 @@ function AdminProfileRequests() {
         </div>
       ))}
 
+      {/* Pagination */}
       <div className="flex justify-center gap-4 mt-6">
         <button
           disabled={page === 1}
@@ -116,7 +121,6 @@ function AdminProfileRequests() {
           Next
         </button>
       </div>
-
     </div>
   );
 }
