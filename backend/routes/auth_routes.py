@@ -27,24 +27,15 @@ if not SECRET_KEY:
 TOKEN_EXPIRY_HOURS = 5
 
 
-# ======================================================
-# HELPER: EMAIL VALIDATION
-# ======================================================
 def is_valid_email(email):
     pattern = r"^[^\s@]+@[^\s@]+\.[^\s@]+$"
     return re.match(pattern, email)
 
 
-# ======================================================
-# HELPER: MOBILE VALIDATION (India)
-# ======================================================
 def is_valid_mobile(mobile):
     return re.match(r"^[6-9]\d{9}$", mobile)
 
 
-# ======================================================
-# ---------------- REGISTER ----------------------------
-# ======================================================
 @auth_bp.route("/register", methods=["POST"])
 def register():
     try:
@@ -136,9 +127,6 @@ def register():
         return jsonify({"message": "Server error"}), 500
 
 
-# ======================================================
-# ---------------- ACTIVATE ACCOUNT --------------------
-# ======================================================
 @auth_bp.route("/activate", methods=["POST"])
 def activate_account():
     try:
@@ -190,11 +178,6 @@ def activate_account():
         return jsonify({"message": "Server error"}), 500
 
 
-# ======================================================
-# ---------------- LOGIN -------------------------------
-# ======================================================
-# Only showing login improvement section
-
 @auth_bp.route("/login", methods=["POST"])
 def login():
     try:
@@ -217,14 +200,14 @@ def login():
         if user.get("status") != "active":
             return jsonify({"message": "Account not activated"}), 403
 
-        if not check_password_hash(user["passwordHash"], password):
+        if not user.get("passwordHash") or not check_password_hash(user["passwordHash"], password):
             return jsonify({"message": "Invalid credentials"}), 401
 
         token = jwt.encode(
             {
                 "user_id": str(user["_id"]),
                 "role": user["role"],
-                "type": "access",  # ✅ important
+                "type": "access",
                 "exp": datetime.utcnow() + timedelta(hours=TOKEN_EXPIRY_HOURS)
             },
             SECRET_KEY,

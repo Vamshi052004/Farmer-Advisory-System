@@ -12,16 +12,10 @@ admin_bp = Blueprint("admin", __name__)
 db = get_db()
 
 
-# =========================================
-# HELPER: CHECK ADMIN ROLE
-# =========================================
 def is_admin(user):
     return user.get("role") == "admin"
 
 
-# =========================================
-# ADMIN DASHBOARD
-# =========================================
 @admin_bp.route("/dashboard", methods=["GET"])
 @token_required
 def admin_dashboard(current_user):
@@ -41,9 +35,6 @@ def admin_dashboard(current_user):
     })
 
 
-# =========================================
-# GET ALL PROFILE UPDATE REQUESTS
-# =========================================
 @admin_bp.route("/profile-update-requests", methods=["GET"])
 @token_required
 def get_profile_update_requests(current_user):
@@ -94,9 +85,7 @@ def get_profile_update_requests(current_user):
         "data": formatted[start:end]
     })
 
-# =========================================
-# APPROVE PROFILE UPDATE
-# =========================================
+
 @admin_bp.route("/approve-profile-update/<request_id>", methods=["POST"])
 @token_required
 def approve_profile_update(current_user, request_id):
@@ -118,6 +107,9 @@ def approve_profile_update(current_user, request_id):
 
     SECRET_KEY = os.getenv("SECRET_KEY")
     FRONTEND_URL = os.getenv("FRONTEND_URL")
+
+    if not SECRET_KEY or not FRONTEND_URL:
+        return jsonify({"message": "Server configuration error"}), 500
 
     update_token = jwt.encode(
         {
@@ -150,10 +142,6 @@ def approve_profile_update(current_user, request_id):
 
     return jsonify({"message": "Update link sent successfully"}), 200
 
-
-# =========================================
-# REJECT PROFILE UPDATE
-# =========================================
 @admin_bp.route("/reject-profile-update/<request_id>", methods=["POST"])
 @token_required
 def reject_profile_update(current_user, request_id):
@@ -174,10 +162,6 @@ def reject_profile_update(current_user, request_id):
     return jsonify({"message": "Profile update request rejected"}), 200
 
 
-# =========================================
-# (ALL YOUR EXISTING ROUTES BELOW — UNCHANGED)
-# =========================================
-# GET ALL FARMERS
 @admin_bp.route("/farmers", methods=["GET"])
 @token_required
 def get_all_farmers(current_user):
@@ -194,7 +178,6 @@ def get_all_farmers(current_user):
     return jsonify(farmers)
 
 
-# DELETE FARMER
 @admin_bp.route("/farmer/<id>", methods=["DELETE"])
 @token_required
 def delete_farmer(current_user, id):
@@ -207,9 +190,6 @@ def delete_farmer(current_user, id):
     return jsonify({"message": "Farmer deleted successfully"})
 
 
-# =========================================
-# GET ALL ADVISORIES
-# =========================================
 @admin_bp.route("/advisories", methods=["GET"])
 @token_required
 def get_all_advisories(current_user):
@@ -225,9 +205,6 @@ def get_all_advisories(current_user):
     return jsonify(advisories), 200
 
 
-# =========================================
-# ADD NEW ADVISORY
-# =========================================
 @admin_bp.route("/advisories", methods=["POST"])
 @token_required
 def add_advisory(current_user):
@@ -256,9 +233,6 @@ def add_advisory(current_user):
     return jsonify({"message": "Advisory added successfully"}), 201
 
 
-# =========================================
-# UPDATE ADVISORY
-# =========================================
 @admin_bp.route("/advisories/<id>", methods=["PUT"])
 @token_required
 def update_advisory(current_user, id):
@@ -290,9 +264,6 @@ def update_advisory(current_user, id):
         return jsonify({"message": "Invalid advisory ID"}), 400
 
 
-# =========================================
-# DELETE ADVISORY
-# =========================================
 @admin_bp.route("/advisories/<id>", methods=["DELETE"])
 @token_required
 def delete_advisory(current_user, id):
@@ -306,7 +277,7 @@ def delete_advisory(current_user, id):
     except:
         return jsonify({"message": "Invalid advisory ID"}), 400
 
-# DELETE ALL PROFILE UPDATE REQUESTS (DEV ONLY)
+
 @admin_bp.route("/delete-all-profile-requests", methods=["DELETE"])
 @token_required
 def delete_all_profile_requests(current_user):

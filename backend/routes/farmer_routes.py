@@ -18,9 +18,6 @@ def get_user_object_id(current_user):
         return None
 
 
-# =========================================================
-# GET FARMER PROFILE
-# =========================================================
 @farmer_bp.route("/profile", methods=["GET"])
 @token_required
 def get_profile(current_user):
@@ -52,21 +49,16 @@ def get_profile(current_user):
         return jsonify({"message": "Failed to fetch profile"}), 500
 
 
-# =========================================================
-# REQUEST PROFILE UPDATE
-# =========================================================
 @farmer_bp.route("/request-profile-update", methods=["POST"])
 @token_required
 def request_profile_update(current_user):
 
     user_id = current_user["_id"]
 
-    # 🔥 Get today's start and end time
     now = datetime.utcnow()
     start_of_day = datetime(now.year, now.month, now.day)
     end_of_day = start_of_day + timedelta(days=1)
 
-    # 🔥 Check if user already requested today
     existing_request = db.profile_update_requests.find_one({
         "userId": user_id,
         "requestedAt": {
@@ -80,7 +72,6 @@ def request_profile_update(current_user):
             "message": "You have already submitted a profile update request today. Please try again tomorrow."
         }), 400
 
-    # ✅ If not requested today → allow
     db.profile_update_requests.insert_one({
         "userId": user_id,
         "status": "pending",
@@ -113,9 +104,7 @@ def get_latest_profile_request(current_user):
         }
     }), 200
 
-# =========================================================
-# GET PROFILE USING TOKEN (NEW)
-# =========================================================
+
 @farmer_bp.route("/profile-by-token/<token>", methods=["GET"])
 def get_profile_by_token(token):
     try:
@@ -149,9 +138,6 @@ def get_profile_by_token(token):
         return jsonify({"message": "Invalid token"}), 400
 
 
-# =========================================================
-# SECURE PROFILE UPDATE
-# =========================================================
 @farmer_bp.route("/secure-update", methods=["POST"])
 def secure_profile_update():
     try:
@@ -194,9 +180,7 @@ def secure_profile_update():
         print("Secure Update Error:", e)
         return jsonify({"message": "Invalid token"}), 400
 
-# =========================================================
-# DASHBOARD
-# =========================================================
+
 @farmer_bp.route("/dashboard", methods=["GET"])
 @token_required
 def dashboard(current_user):

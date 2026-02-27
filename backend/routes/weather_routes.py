@@ -9,9 +9,6 @@ weather_bp = Blueprint("weather", __name__)
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 
-# =========================================================
-# WEATHER FORECAST ROUTE
-# =========================================================
 @weather_bp.route("/forecast", methods=["GET"])
 def get_weather():
 
@@ -104,9 +101,6 @@ def get_weather():
         return jsonify({"message": "Weather fetch failed"}), 500
 
 
-# =========================================================
-# REVERSE GEOCODING (lat/lng → location)
-# =========================================================
 @weather_bp.route("/reverse-geocode", methods=["GET"])
 def reverse_geocode():
     lat = request.args.get("lat")
@@ -136,9 +130,6 @@ def reverse_geocode():
         return jsonify({"message": "Reverse geocoding failed"}), 500
 
 
-# =========================================================
-# SEARCH LOCATION (forward geocoding)
-# =========================================================
 @weather_bp.route("/search-location", methods=["GET"])
 def search_location():
     query = request.args.get("q")

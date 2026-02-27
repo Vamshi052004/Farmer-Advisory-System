@@ -13,17 +13,14 @@ def token_required(f):
     def decorated(*args, **kwargs):
         auth_header = request.headers.get("Authorization")
 
-        # ✅ Validate Authorization header format
         if not auth_header or not auth_header.startswith("Bearer "):
             return jsonify({"message": "Authorization token is missing or invalid format"}), 401
 
         token = auth_header.split(" ")[1]
 
         try:
-            # ✅ Decode token
             data = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
 
-            # ✅ Fetch user from DB
             db = get_db()
             current_user = db.users.find_one(
                 {"_id": ObjectId(data.get("user_id"))}

@@ -6,10 +6,6 @@ advisory_bp = Blueprint("advisory", __name__)
 db = get_db()
 
 
-# =========================================================
-# CONSTANTS
-# =========================================================
-
 VALID_SOILS = [
     "Alluvial Soil", "Black Soil", "Red Soil",
     "Laterite Soil", "Arid Soil", "Mountain Soil",
@@ -37,9 +33,6 @@ VALID_CROPS = [
 ]
 
 
-# =========================================================
-# AI MOCK ENDPOINT (Future ML Hook)
-# =========================================================
 @advisory_bp.route("/ai", methods=["GET"])
 @token_required
 def ai_advisory(current_user):
@@ -51,9 +44,6 @@ def ai_advisory(current_user):
     }), 200
 
 
-# =========================================================
-# SMART DYNAMIC CROP ADVISORY
-# =========================================================
 @advisory_bp.route("/recommendation", methods=["GET"])
 @token_required
 def crop_recommendation(current_user):
@@ -62,9 +52,6 @@ def crop_recommendation(current_user):
         crop = request.args.get("crop")
         soil = request.args.get("soilType")
 
-        # ---------------------------
-        # Profile Fallback
-        # ---------------------------
         if not crop:
             crop = current_user.get("preferredCrop")
 
@@ -81,12 +68,8 @@ def crop_recommendation(current_user):
             return jsonify({"message": "Invalid soil type"}), 400
 
         advisory_points = []
-        confidence_score = 70  # base confidence
+        confidence_score = 70
 
-
-        # =================================================
-        # SOIL BASED LOGIC
-        # =================================================
         if soil == "Clay Soil":
             advisory_points.extend([
                 "Clay soil retains high moisture. Avoid over-irrigation.",
@@ -127,10 +110,6 @@ def crop_recommendation(current_user):
                 "Conduct soil testing before fertilizer application."
             )
 
-
-        # =================================================
-        # CROP BASED LOGIC
-        # =================================================
         if crop == "Rice":
             advisory_points.extend([
                 "Maintain standing water during early growth stage.",
@@ -172,8 +151,6 @@ def crop_recommendation(current_user):
                 "Consult local agriculture officer if needed."
             ])
 
-
-        # Final Confidence Cap
         confidence_score = min(confidence_score, 95)
 
         return jsonify({
@@ -190,9 +167,6 @@ def crop_recommendation(current_user):
         }), 500
 
 
-# =========================================================
-# GET AVAILABLE CROPS
-# =========================================================
 @advisory_bp.route("/crops", methods=["GET"])
 @token_required
 def get_available_crops(current_user):
@@ -202,9 +176,6 @@ def get_available_crops(current_user):
     }), 200
 
 
-# =========================================================
-# GET AVAILABLE SOILS
-# =========================================================
 @advisory_bp.route("/soils", methods=["GET"])
 @token_required
 def get_available_soils(current_user):

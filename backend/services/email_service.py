@@ -9,6 +9,11 @@ ACCENT_COLOR = "#66bb6a"
 
 
 def send_email(payload):
+
+    if not BREVO_API_KEY or not SENDER_EMAIL:
+        print("Email service not configured properly")
+        return 500
+
     url = "https://api.brevo.com/v3/smtp/email"
 
     headers = {
@@ -17,13 +22,14 @@ def send_email(payload):
         "content-type": "application/json"
     }
 
-    response = requests.post(url, json=payload, headers=headers)
-    return response.status_code
+    try:
+        response = requests.post(url, json=payload, headers=headers, timeout=10)
+        return response.status_code
+    except Exception as e:
+        print("Email sending failed:", str(e))
+        return 500
 
 
-# ==================================================
-# ACTIVATION EMAIL
-# ==================================================
 def send_activation_email(to_email, activation_link, language="en", name="Farmer"):
 
     subject = "🌾 Activate Your Smart Farmer Account"
@@ -44,9 +50,6 @@ def send_activation_email(to_email, activation_link, language="en", name="Farmer
     return send_email(payload)
 
 
-# ==================================================
-# REMINDER EMAIL
-# ==================================================
 def send_activation_reminder(to_email, activation_link, name="Farmer"):
 
     subject = "⏳ Reminder: Activate Your Account"
@@ -67,9 +70,6 @@ def send_activation_reminder(to_email, activation_link, name="Farmer"):
     return send_email(payload)
 
 
-# ==================================================
-# PROFILE UPDATE APPROVAL EMAIL (NEW)
-# ==================================================
 def send_profile_update_link(to_email, name, update_link):
 
     subject = "✅ Profile Update Access Granted"

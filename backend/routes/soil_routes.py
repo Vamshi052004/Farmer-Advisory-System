@@ -20,7 +20,6 @@ def soil_health(current_user):
     ph = "Neutral"
     recommendations = []
 
-    # 🔥 DYNAMIC RULES BASED ON SOIL TYPE
     if soil_type == "Black Soil":
         nutrients = ["Nitrogen", "Phosphorus"]
         ph = "Neutral to Slightly Alkaline"

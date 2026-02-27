@@ -3,11 +3,6 @@ from flask import jsonify
 
 
 def role_required(required_roles):
-    """
-    required_roles can be:
-    - A single string: "admin"
-    - A list: ["admin", "super_admin"]
-    """
 
     if isinstance(required_roles, str):
         required_roles = [required_roles]

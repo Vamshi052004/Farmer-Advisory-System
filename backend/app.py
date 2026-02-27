@@ -22,23 +22,28 @@ from services.email_service import send_activation_reminder
 
 load_dotenv()
 
+scheduler = None
+
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # ✅ GLOBAL CORS FIX (handles OPTIONS automatically)
+    frontend_url = os.getenv("FRONTEND_URL")
+
+    allowed_origins = ["http://localhost:5173"]
+
+    if frontend_url:
+        allowed_origins.append(frontend_url)
+
     CORS(
         app,
-        resources={r"/api/*": {"origins": "http://localhost:5173"}},
+        resources={r"/api/*": {"origins": allowed_origins}},
         supports_credentials=True
     )
 
     register_error_handlers(app)
 
-    # ==============================
-    # REGISTER BLUEPRINTS
-    # ==============================
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(farmer_bp, url_prefix="/api/farmer")
     app.register_blueprint(advisory_bp, url_prefix="/api/advisory")
@@ -51,18 +56,25 @@ def create_app():
     def health_check():
         return {"status": "Backend running successfully 🚀"}
 
-    start_scheduler()
+    if (
+        os.getenv("RUN_SCHEDULER", "true").lower() == "true"
+        and not app.debug
+    ):
+        start_scheduler()
 
     return app
 
-
-# ==============================
-# ACTIVATION REMINDER SCHEDULER
-# ==============================
 def check_pending_users():
     db = get_db()
+    
     SECRET_KEY = os.getenv("SECRET_KEY")
     FRONTEND_URL = os.getenv("FRONTEND_URL")
+    
+    if not SECRET_KEY:
+        raise ValueError("SECRET_KEY is not set")
+
+    if not FRONTEND_URL:
+        raise ValueError("FRONTEND_URL is not set")
 
     twelve_hours_ago = datetime.utcnow() - timedelta(hours=12)
 
@@ -93,17 +105,21 @@ def check_pending_users():
             print(f"Reminder email sent to {user['email']}")
 
         except Exception as e:
-            print("Reminder Error:", e)
+            print("Reminder Error:", str(e))
 
 
 def start_scheduler():
+    global scheduler
+
+    if scheduler and scheduler.running:
+        return
+
     scheduler = BackgroundScheduler()
     scheduler.add_job(check_pending_users, "interval", hours=6)
     scheduler.start()
     print("Activation reminder scheduler started 🚀")
 
-
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

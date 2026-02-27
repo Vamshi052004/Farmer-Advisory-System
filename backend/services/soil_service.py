@@ -2,6 +2,10 @@ def get_soil_recommendation(soil_type):
     """
     Soil-based fertilizer recommendation
     """
+
+    if not soil_type:
+        return "Soil type not provided"
+
     recommendations = {
         "red": "Use organic compost and nitrogen-rich fertilizer",
         "black": "Use phosphorus-rich fertilizer",

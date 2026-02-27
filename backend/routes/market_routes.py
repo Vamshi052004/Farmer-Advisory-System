@@ -7,9 +7,6 @@ market_bp = Blueprint("market", __name__)
 db = get_db()
 
 
-# =========================================
-# GET ALL MARKET DATA
-# =========================================
 @market_bp.route("/", methods=["GET"])
 @token_required
 def get_all_market(current_user):
@@ -24,7 +21,6 @@ def get_all_market(current_user):
     for crop in crops:
         crop["_id"] = str(crop["_id"])
 
-        # Hide consumer price for farmer
         if current_user["role"] != "admin":
             crop.pop("consumerPrice", None)
 
@@ -33,14 +29,10 @@ def get_all_market(current_user):
     return jsonify(result), 200
 
 
-# =========================================
-# GET SINGLE CROP DATA
-# =========================================
 @market_bp.route("/<crop_name>", methods=["GET"])
 @token_required
 def get_crop_market(current_user, crop_name):
 
-    # Case insensitive search
     crop = db.market.find_one({
         "crop": {
             "$regex": f"^{re.escape(crop_name)}$",
@@ -53,7 +45,6 @@ def get_crop_market(current_user, crop_name):
 
     crop["_id"] = str(crop["_id"])
 
-    # Hide consumer price for farmers
     if current_user["role"] != "admin":
         crop.pop("consumerPrice", None)
 
