@@ -3,8 +3,8 @@ version: "3.9"
 services:
   backend:
     build:
-      context: ../backend
-      dockerfile: Dockerfile.backend
+      context: ..
+      dockerfile: deployment/Dockerfile.backend
     container_name: farmer_backend
     ports:
       - "5000:5000"
@@ -15,8 +15,8 @@ services:
 
   frontend:
     build:
-      context: ../frontend
-      dockerfile: Dockerfile.frontend
+      context: ..
+      dockerfile: deployment/Dockerfile.frontend
     container_name: farmer_frontend
     ports:
       - "3000:80"
