@@ -25,7 +25,12 @@ if not SECRET_KEY:
     raise Exception("SECRET_KEY not set in environment variables")
 
 TOKEN_EXPIRY_HOURS = 5
+ACTIVATION_EXPIRY_HOURS = 24
 
+
+# =========================
+# Validators
+# =========================
 
 def is_valid_email(email):
     pattern = r"^[^\s@]+@[^\s@]+\.[^\s@]+$"
@@ -35,6 +40,10 @@ def is_valid_email(email):
 def is_valid_mobile(mobile):
     return re.match(r"^[6-9]\d{9}$", mobile)
 
+
+# =========================
+# REGISTER (NO PASSWORD HERE)
+# =========================
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
@@ -69,7 +78,7 @@ def register():
             land_area = float(data["landArea"])
             if land_area <= 0:
                 return jsonify({"message": "Land area must be greater than 0"}), 400
-        except:
+        except ValueError:
             return jsonify({"message": "Land area must be numeric"}), 400
 
         if find_user_by_mobile(mobile):
@@ -78,6 +87,7 @@ def register():
         if find_user_by_email(email):
             return jsonify({"message": "Email already registered"}), 409
 
+        # Create user WITHOUT password
         user = {
             "name": name,
             "email": email,
@@ -103,7 +113,7 @@ def register():
             {
                 "email": email,
                 "type": "activation",
-                "exp": datetime.utcnow() + timedelta(hours=24)
+                "exp": datetime.utcnow() + timedelta(hours=ACTIVATION_EXPIRY_HOURS)
             },
             SECRET_KEY,
             algorithm="HS256"
@@ -126,6 +136,10 @@ def register():
         print("Register Error:", str(e))
         return jsonify({"message": "Server error"}), 500
 
+
+# =========================
+# ACTIVATE (SET PASSWORD HERE)
+# =========================
 
 @auth_bp.route("/activate", methods=["POST"])
 def activate_account():
@@ -177,6 +191,10 @@ def activate_account():
         print("Activation Error:", str(e))
         return jsonify({"message": "Server error"}), 500
 
+
+# =========================
+# LOGIN (ONLY ACTIVE USERS)
+# =========================
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
