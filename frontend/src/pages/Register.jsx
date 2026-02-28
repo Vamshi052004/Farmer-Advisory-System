@@ -38,7 +38,7 @@ function Register() {
     } catch (err) {
       setError(
         err.response?.data?.message ||
-        "Registration failed. Please try again."
+          "Registration failed. Please try again."
       );
     } finally {
       setLoading(false);
@@ -46,44 +46,79 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-100 p-6">
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-4xl">
-        <h2 className="text-3xl font-bold text-center text-green-700 mb-8">
+    <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">
+      <div className="w-full max-w-lg bg-white p-6 sm:p-8 rounded-2xl shadow-xl">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-green-700 mb-6">
           🌿 Create Your Account
         </h2>
 
-        <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        >
           {Object.keys(formData).map((key) =>
             key === "regionType" ? (
-              <select key={key} name={key} onChange={handleChange} required className="border p-3 rounded-xl">
+              <select
+                key={key}
+                name={key}
+                onChange={handleChange}
+                required
+                className="w-full border p-3 rounded-xl"
+              >
                 <option value="">Select Region</option>
                 {REGION_TYPES.map((r, i) => (
-                  <option key={i} value={r}>{r}</option>
+                  <option key={i} value={r}>
+                    {r}
+                  </option>
                 ))}
               </select>
             ) : key === "soilType" ? (
-              <select key={key} name={key} onChange={handleChange} required className="border p-3 rounded-xl">
+              <select
+                key={key}
+                name={key}
+                onChange={handleChange}
+                required
+                className="w-full border p-3 rounded-xl"
+              >
                 <option value="">Select Soil Type</option>
                 {SOIL_TYPES.map((s, i) => (
-                  <option key={i} value={s}>{s}</option>
+                  <option key={i} value={s}>
+                    {s}
+                  </option>
                 ))}
               </select>
             ) : key === "preferredCrop" ? (
-              <select key={key} name={key} onChange={handleChange} required className="border p-3 rounded-xl md:col-span-2">
+              <select
+                key={key}
+                name={key}
+                onChange={handleChange}
+                required
+                className="w-full border p-3 rounded-xl md:col-span-2"
+              >
                 <option value="">Select Preferred Crop</option>
                 {CROPS.map((c, i) => (
-                  <option key={i} value={c}>{c}</option>
+                  <option key={i} value={c}>
+                    {c}
+                  </option>
                 ))}
               </select>
             ) : (
               <input
                 key={key}
-                type={key === "email" ? "email" : key === "dob" ? "date" : key === "landArea" ? "number" : "text"}
+                type={
+                  key === "email"
+                    ? "email"
+                    : key === "dob"
+                    ? "date"
+                    : key === "landArea"
+                    ? "number"
+                    : "text"
+                }
                 name={key}
                 placeholder={key}
                 onChange={handleChange}
                 required
-                className="border p-3 rounded-xl"
+                className="w-full border p-3 rounded-xl"
               />
             )
           )}
@@ -91,7 +126,7 @@ function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="md:col-span-2 py-3 bg-green-600 text-white rounded-xl"
+            className="md:col-span-2 w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl transition"
           >
             {loading ? "Registering..." : "Register"}
           </button>
@@ -101,7 +136,7 @@ function Register() {
           <p className="text-red-500 text-center mt-4">{error}</p>
         )}
 
-        <div className="text-center mt-6">
+        <div className="text-center mt-6 text-sm sm:text-base">
           Already have an account?{" "}
           <Link to="/login" className="text-green-700 font-semibold">
             Login
